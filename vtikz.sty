@@ -46,14 +46,37 @@
     \end{basicframe}
 }
 
+\NewEnviron{frameseq}[2]{
+    \let\frameseqBODY\BODY
+
+    \newcommand{\fmax}{#1}
+    \foreach \f in {1,...,#1}{
+        \newcommand{\fprogress}{\f/\fmax}
+        \begin{#2}
+            \frameseqBODY
+        \end{#2}
+    }
+}
+
 \NewEnviron{tikzmultiframe}[1]{
     \let\tikzframeBODY\BODY
 
-    \foreach \f in {1,...,#1}{
-        \begin{tikzframe}
-            \tikzframeBODY
-        \end{tikzframe}
-    }
+    \begin{frameseq}{#1}{tikzframe}
+        \tikzframeBODY
+    \end{frameseq}
 }
+
+\NewEnviron{interpolate}[1]{
+    \let\interpolateFunction#1
+    \let\oldfprogress\fprogress
+    \renewcommand{\fprogress}{\interpolateFunction{\oldfprogress}}
+    \BODY
+}
+
+\newcommand{\matheval}[1]{\pgfmathparse{#1}\pgfmathresult}
+
+\newcommand{\EaseInterpolate}[1]{(20.0*#1/pi - sin(20.0*#1/pi r))/(2*pi)}
+\newcommand{\IdentityInterpolate}[1]{#1}
+\newcommand{\ReverseInterpolate}[1]{1.0 - #1}
 
 \endinput
