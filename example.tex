@@ -6,8 +6,10 @@
 \begin{document}
 
 \begin{tikzmultiframe}{60}
-    \node at (3, -4 + 0.05*\f)
-        {\huge Drawing is fun with Ti\emph{k}Z.};
+    \begin{interpolate}{\EaseInterpolate}
+        \node at (3, {-4 + 3.0*\fprogress})
+            {\huge Drawing is fun with Ti\emph{k}Z.};
+    \end{interpolate}
 \end{tikzmultiframe}
 
 \begin{tikzmultiframe}{30}
@@ -16,8 +18,10 @@
 \end{tikzmultiframe}
 
 \begin{tikzmultiframe}{60}
-    \node at (6, -4 + 0.05*\f)
-        {\huge But animations are more fun with \textbf{v}Ti\emph{k}Z.};
+    \begin{interpolate}{\EaseInterpolate}
+        \node at (6, {-4 + 3.0*\fprogress})
+            {\huge But animations are more fun with \textbf{v}Ti\emph{k}Z.};
+    \end{interpolate}
 \end{tikzmultiframe}
 
 \begin{tikzmultiframe}{30}
