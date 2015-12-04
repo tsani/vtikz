@@ -1,0 +1,53 @@
+\documentclass{article}
+
+\usepackage[margin=0cm, paperwidth=10in, paperwidth=10in]{geometry}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{calc}
+\usepackage{forloop}
+\usepackage{environ}
+
+\newcounter{FrameNumber}
+
+\NewEnviron{tikzframe}{
+    \noindent
+    \begin{tikzpicture}
+        \BODY
+    \end{tikzpicture}
+    \pagebreak
+    \clearpage
+}
+
+\NewEnviron{tikzmultiframe}[1]{
+    \foreach \f in {1,...,#1}{
+        \noindent
+        \begin{tikzpicture}
+            \BODY
+        \end{tikzpicture}
+        \pagebreak
+        \clearpage
+    }
+}
+
+\begin{document}
+
+\begin{tikzmultiframe}{120}
+    \begin{axis}[
+            width=9in,
+            height=9in,
+            grid=major,
+            grid style={dashed, gray!30},
+            xmin=-2*pi,
+            xmax=2*pi,
+            ymin=-1.0,
+            ymax=1.0,
+            ylabel=$\sin{x}$,
+            xlabel=$x$,
+            tick align=outside
+        ]
+        \addplot[domain=-2*pi:2*pi, samples=100, blue, thick, smooth]
+            (\x, {sin((\f/30)*2*pi - \x r)});
+    \end{axis}
+\end{tikzmultiframe}
+
+\end{document}
