@@ -33,6 +33,26 @@
 
 \begin{document}
 
+\begin{tikzmultiframe}{60}
+    \node at (3, -4 + 0.05*\f)
+        {\huge Drawing is fun with Ti\emph{k}Z.};
+\end{tikzmultiframe}
+
+\begin{tikzmultiframe}{30}
+    \node at (3, -1)
+        {\huge Drawing is fun with Ti\emph{k}Z.};
+\end{tikzmultiframe}
+
+\begin{tikzmultiframe}{60}
+    \node at (6, -4 + 0.05*\f)
+        {\huge But animations are more fun with \textbf{v}Ti\emph{k}Z.};
+\end{tikzmultiframe}
+
+\begin{tikzmultiframe}{30}
+    \node at (6, -1)
+        {\huge But animations are more fun with \textbf{v}Ti\emph{k}Z.};
+\end{tikzmultiframe}
+
 \begin{tikzmultiframe}{120}
     \begin{axis}[
             width=9in,
@@ -50,6 +70,11 @@
         \addplot[domain=-2*pi:2*pi, samples=100, blue, thick, smooth]
             (\x, {sin((\f r/30)*2*pi - \x r)});
     \end{axis}
+\end{tikzmultiframe}
+
+\begin{tikzmultiframe}{60}
+    \node at (2, -2 + 5.0\f/60)
+        {\huge That's all, folks!};
 \end{tikzmultiframe}
 
 \end{document}
