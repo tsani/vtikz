@@ -1,0 +1,59 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{vtikz}[2015/12/04 vTikZ]
+
+\RequirePackage{tikz}
+\usetikzlibrary{calc}
+\RequirePackage{forloop}
+\RequirePackage{environ}
+
+% TODO use option processing to get these from the end-user
+
+\newlength{\mywidth}
+\setlength{\mywidth}{10in}
+
+\newlength{\myheight}
+\setlength{\myheight}{10in}
+
+\newlength{\myxstep}
+\setlength{\myxstep}{1in}
+
+\newlength{\myystep}
+\setlength{\myystep}{1in}
+
+\RequirePackage[
+    margin=0cm,
+    paperwidth=\mywidth,
+    paperheight=\myheight
+]{geometry}
+
+\ProcessOptions\relax
+
+\NewEnviron{basicframe}{
+    \BODY
+    \pagebreak
+    \clearpage
+}
+
+\NewEnviron{tikzframe}{
+    \let\basicframeBODY\BODY
+
+    \begin{basicframe}
+        \noindent
+        \begin{tikzpicture}[x=\myxstep, y=\myystep]
+            \draw (0, 0);
+            \basicframeBODY
+        \end{tikzpicture}
+    \end{basicframe}
+}
+
+\NewEnviron{tikzmultiframe}[1]{
+    \let\tikzframeBODY\BODY
+
+    \foreach \f in {1,...,#1}{
+        \begin{tikzframe}
+            \tikzframeBODY
+        \end{tikzframe}
+    }
+}
+
+\endinput

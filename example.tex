@@ -1,35 +1,7 @@
 \documentclass{article}
 
-\usepackage[margin=0cm, paperwidth=10in, paperwidth=10in]{geometry}
-\usepackage{tikz}
+\usepackage{vtikz}
 \usepackage{pgfplots}
-\usetikzlibrary{calc}
-\usepackage{forloop}
-\usepackage{environ}
-
-\newcounter{FrameNumber}
-
-\NewEnviron{tikzframe}{
-    \noindent
-    \begin{tikzpicture}[x=1in, y=1in]
-        \draw (0, 0);
-        \BODY
-    \end{tikzpicture}
-    \pagebreak
-    \clearpage
-}
-
-\NewEnviron{tikzmultiframe}[1]{
-    \foreach \f in {1,...,#1}{
-        \noindent
-        \begin{tikzpicture}[x=1in, y=1in]
-            \draw (0, 0);
-            \BODY
-        \end{tikzpicture}
-        \pagebreak
-        \clearpage
-    }
-}
 
 \begin{document}
 
