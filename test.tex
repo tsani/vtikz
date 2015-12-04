@@ -11,7 +11,8 @@
 
 \NewEnviron{tikzframe}{
     \noindent
-    \begin{tikzpicture}
+    \begin{tikzpicture}[x=1in, y=1in]
+        \draw (0, 0);
         \BODY
     \end{tikzpicture}
     \pagebreak
@@ -21,7 +22,8 @@
 \NewEnviron{tikzmultiframe}[1]{
     \foreach \f in {1,...,#1}{
         \noindent
-        \begin{tikzpicture}
+        \begin{tikzpicture}[x=1in, y=1in]
+            \draw (0, 0);
             \BODY
         \end{tikzpicture}
         \pagebreak
