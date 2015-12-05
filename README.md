@@ -72,21 +72,25 @@ Also, the `\fmax` macro will expand to the number of frames given as the
 parameter to `tikzmultiframe`. Hence, `\fprogress` is equal to `\f/\fmax`.
 
 Let's draw "Hello world!" at the bottom of the frame and move it up to the top
-of the frame over the course of two seconds. Currently, vTikZ requires you to
-work directly with frame counts instead of times. Thus, it's essential to know
-that the default vTikZ framerate is 30 frames per second.
+of the frame over the course of two seconds.
 
 ```tex
-\begin{tikzmultiframe}{60}
+\begin{tikzmultiframe}{\seconds{2}}
     \node at (5, {-8 + 6*\fprogress}) {\huge Hello world!}
 \end{tikzmultiframe}
 ```
 
-The macro `\fprogress` will start out as `1/60` and will finally reach `60/60`.
+Normally, the `tikzmultiframe` environment expects its parameter to be a number
+of frames. Rather than work with frame counts directly, vTikZ provides the
+`\seconds` and `\millis` macros to compute frame counts for you using the
+current framerate.
+The default framerate is currently 30 frames per second.
+Thus, the macro `\fprogress` will start out as `1/60` and will finally reach
+`60/60`.
 TikZ has a math engine that will evaluate this fraction, multiply it by our
-desired displacement `6` and compute the `y` position of the text. The result
-is that the text will move from the bottom of the frame to the top of the frame
-over the course of two seconds in a linear fashion.
+desired displacement `6` and compute the `y` position of the text.
+The result is that the text will move from the bottom of the frame to the top
+of the frame over the course of two seconds in a linear fashion.
 
 Nonlinear interpolation
 -----------------------
@@ -108,7 +112,7 @@ Now we just need to write this function as a LaTeX macro
 ```
 pass it to the `interpolate` environment
 ```tex
-\begin{tikzmultiframe}{60}
+\begin{tikzmultiframe}{\seconds{2}}
     \begin{interpolate}{\EaseInterpolate}
         \node at (5, {-8 + 6*\fprogress}) {\huge Hello world!}
     \end{interpolate}
@@ -118,6 +122,23 @@ and watch as our text elegantly slides across the page !
 
 `\EaseInterpolate` is available by default in vTikZ. New interpolation
 functions are welcome in pull requests.
+
+Two other basic interpolation functions are available in vTikZ:
+`\IdentityInterpolate`, which is the identity map; and `\ReverseInterpolate`,
+which reverses the progress of an animation.
+
+It is possible to nest `interpolate` environments. The effect is the same as
+composing the interpolation functions.
+
+```tex
+\begin{tikzmultiframe}{\seconds{2}}
+    \begin{interpolate}{\EaseInterpolate}
+        \begin{interpolate}{\ReverseInterpolate}
+            \node at (5, {-8 + 6*\fprogress}) {\huge Hello world!}
+        \end{interpolate}
+    \end{interpolate}
+\end{tikzmultiframe}
+```
 
 Video rendering
 ===============
