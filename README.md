@@ -65,7 +65,7 @@ repeats the given text inside a `tikzframe` a given number of times. Within a
 `tikzmultiframe` environment, two important macros are available:
 
  * `\f` gives the current frame number
- * `\fprogress` gives the progres of the animation as a fraction of the number
+ * `\fprogress` gives the progress of the animation as a fraction of the number
    of frames elapsed.
 
 Also, the `\fmax` macro will expand to the number of frames given as the
