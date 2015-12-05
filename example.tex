@@ -5,26 +5,26 @@
 
 \begin{document}
 
-\begin{tikzmultiframe}{60}
+\begin{tikzmultiframe}{\seconds{2}}
     \begin{interpolate}{\EaseInterpolate}
         \node at (3, {-4 + 3.0*\fprogress})
             {\huge Drawing is fun with Ti\emph{k}Z.};
     \end{interpolate}
 \end{tikzmultiframe}
 
-\begin{tikzmultiframe}{30}
+\begin{tikzmultiframe}{\seconds{1}}
     \node at (3, -1)
         {\huge Drawing is fun with Ti\emph{k}Z.};
 \end{tikzmultiframe}
 
-\begin{tikzmultiframe}{60}
+\begin{tikzmultiframe}{\seconds{2}}
     \begin{interpolate}{\EaseInterpolate}
         \node at (6, {-4 + 3.0*\fprogress})
             {\huge But animations are more fun with \textbf{v}Ti\emph{k}Z.};
     \end{interpolate}
 \end{tikzmultiframe}
 
-\begin{tikzmultiframe}{30}
+\begin{tikzmultiframe}{\millis{1500}}
     \node at (6, -1)
         {\huge But animations are more fun with \textbf{v}Ti\emph{k}Z.};
 \end{tikzmultiframe}

@@ -20,6 +20,10 @@
 \newlength{\myystep}
 \setlength{\myystep}{1in}
 
+\newcommand{\fps}{30}
+\newcommand{\seconds}[1]{\numexpr #1*\fps \relax}
+\newcommand{\millis}[1]{\numexpr #1*\fps/1000 \relax}
+
 \RequirePackage[
     margin=0cm,
     paperwidth=\mywidth,
