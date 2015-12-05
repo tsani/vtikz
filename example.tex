@@ -7,8 +7,10 @@
 
 \begin{tikzmultiframe}{\seconds{2}}
     \begin{interpolate}{\EaseInterpolate}
-        \node at (3, {-4 + 3.0*\fprogress})
-            {\huge Drawing is fun with Ti\emph{k}Z.};
+        \begin{interpolate}{\ReverseInterpolate}
+            \node at (3, {-4 + 3.0*\fprogress})
+                {\huge Drawing is fun with Ti\emph{k}Z.};
+        \end{interpolate}
     \end{interpolate}
 \end{tikzmultiframe}
 
