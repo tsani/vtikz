@@ -72,7 +72,7 @@
 \NewEnviron{interpolate}[1]{
     \let\interpolateFunction#1
     \let\oldfprogress\fprogress
-    \renewcommand{\fprogress}{\interpolateFunction{\oldfprogress}}
+    \edef\fprogress{\interpolateFunction{\oldfprogress}}
     \BODY
 }
 
